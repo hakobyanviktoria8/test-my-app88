@@ -1,0 +1,155 @@
+.registerWrapper{
+    width: 500px;
+    margin: 18vh auto 0;
+}
+.registerWrapper h6 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #474657;
+    font-weight: 600;
+}
+.registerWrapper label{
+    height: auto !important;
+    color: rgba(71, 70, 87, .7);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.registerWrapper .inputComp{
+    margin-bottom: 10px;
+}
+.selectCountryWrapper{
+    height: 50px; 
+    margin-bottom: 10px;
+}
+.selectCountryWrapper:hover {
+    border-color: #40a9ff;
+}
+.selectCountryWrapper > select {
+    border: 1px solid #f0f0f0;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #f0f0f0 !important;
+    padding: 0 11px;
+    font-size: 14px;
+    width: 100%;
+    background: none;
+    outline: none;
+    display: block;
+    color: #474657;
+}
+.selectCountryWrapper > span {
+    color: #ff4d4f;
+    font-size: 12px;
+}
+.selectCodeWrapper{
+    display: flex;
+}
+.selectCodeWrapper > select{
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+.selectCodeWrapper > .inputComp{
+    width: 100%;
+    margin-left: 10px;
+}
+.selectCodeWrapper>.inputComp span{
+    margin-left: -90px;
+}
+.selectCode{
+    cursor: not-allowed;
+    height: 40px;
+    width: 100px;
+    /* appearance: none; */
+    /* touch-action: manipulation; */
+}
+.agreeCheckboxWrapper{
+    margin-top: 20px;
+    height: 60px;
+}
+.agreeCheckboxWrapper > span{
+    color: #ff4d4f;
+    font-size: 12px;
+}
+.agreeCheckbox{
+    display: flex;
+}
+.agreeCheckbox > input{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #40a9ff;
+    margin-top: 5px;
+}
+.agreeCheckbox span{
+    font-size: 14px;
+    color: rgba(0, 0, 0, .85);
+    cursor: pointer;
+}
+.agreeCheckbox span a{
+    color: #1890ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.registerLinks{
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.registerLinks > .loginLink {
+    width: 30%;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, .85);
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+    margin-right: 5%;
+    margin-left: 0% !important;
+}
+.loginLink:hover {
+    color: #40a9ff;
+    border-color: #40a9ff;
+}
+.registerSubmit {
+    background: #1890ff;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 40px;
+    padding: 6.4px 15px;
+    width: 65%;
+}
+
+
+/* media style */
+@media (max-width: 1024px) {
+    .registerWrapper {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .registerWrapper {
+        width: 60%;
+    }
+    .agreeCheckbox>input{
+        width: 30px;
+        height: 30px;
+        margin-top: 0 !important;
+    }
+}
+
+@media (max-width: 425px) {
+    .registerWrapper {
+        width: 80%;
+    }
+}

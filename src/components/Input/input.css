@@ -1,0 +1,46 @@
+/* input component */
+.input{
+    height: 40px;
+    border-radius: 10px;    
+    background-color: #f0f0f0;
+    padding: 5px 11px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    border: 1px solid #f0f0f0;
+}
+.input:hover{
+    border-color: #40a9ff;
+}
+.input > input{
+    width: 90%;
+    height: 30px;
+    border: none;
+    background: none;
+    outline: none;
+}
+.input > div{
+    width: 10%;
+    display: flex;
+    justify-content: end;
+}
+.input span{
+    background: #ff4d4f;
+    color: white;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 12px;
+    padding-bottom: 3px;
+}
+.inputComp{
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-bottom: 18px;
+    height: 50px;
+}

@@ -1,0 +1,143 @@
+.card {
+    padding: 40px 23px 30px;
+    border-radius: 30px;
+    box-shadow: 0 -3px 10px rgb(0 0 0 / 5%);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px;
+    margin-bottom: 50px;
+    width: 25%;
+    display: flex;
+    color: #474657;
+    height: 420px;
+}
+.card h3 {
+    font-size: 21px;
+    font-weight: 500;
+    margin: 0 0 20px;
+    color: #1e419c;
+}
+.card .rowWrapper {
+    width: 100%;
+}
+.card .row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.linkRegister {
+    margin: 30px auto 0;
+    line-height: 44PX;
+    background-color: #0076ff;
+    font-size: 12px;
+    box-shadow: 0 3px 55px hsl(0deg 0% 46% / 16%);
+    border-radius: 60px;
+    border: none;
+    outline: none;
+    width: 90%;
+    height: 44px;
+}
+.linkRegister > a {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+}
+
+/* card hover effect */
+.card:hover{
+    background-color: rgba(0, 118, 255, .2);
+    cursor: pointer;
+    transition: background-color 2s ease-out;
+    transform: translateY(-10px);
+}
+.linkRegister:hover {
+    background-color: #ff9300;
+}
+
+/* enterprise Card */
+.enterpriseCard{
+    background-image: linear-gradient(#1f409a, #105bcc, #0076ff);
+    color: #fff;
+}
+.enterpriseCard > h3{
+    color: #fff;
+}
+.enterpriseCard > h4{
+    margin: 27px auto 0;
+    font-weight: 500;
+    line-height: 16px;
+}
+.enterpriseCard > p {
+    margin-top: 21px;
+    font-size: 12px;
+    width: 99%;
+    text-align: center;
+    margin-bottom: 16px;
+}
+.phpneNumber{
+    width: 90%;
+    height: 40px;
+    border-radius: 100px;
+    background-color: hsla(0, 0%, 100%, .32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 29px;
+    margin-bottom: 14px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+.phpneNumber > span{
+    margin-right: 10px;
+}
+.enterpriseCard > .linkRegister{
+    background-color: #fff;
+}
+.enterpriseCard > .linkRegister a{
+    color: #0076ff;
+}
+
+/* enterprise Card hover effect*/
+.enterpriseCard > .phpneNumber:hover{
+    color: #ff9300;
+}
+.enterpriseCard>.linkRegister:hover{
+    background-color: #ff9300;
+}
+.enterpriseCard >.linkRegister a:hover{
+    color: #fff;
+}
+
+
+/* media style */
+@media (max-width: 1024px) {
+    .phpneNumber{
+        width: 100%;
+        font-size: 15px;
+    }
+    .linkRegister{
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+   .card{
+        width: 270px;
+   }
+    .packageMain>p{
+        width: 90% !important;
+    }
+}
+
+@media (max-width: 425px) {
+   .card{
+        width: 300px;
+   }
+}

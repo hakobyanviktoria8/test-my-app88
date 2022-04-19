@@ -1,0 +1,55 @@
+.packageWrapper{
+   width: 92%;
+   margin: 30px auto;
+}
+.homeLink{
+    height: 8vh;
+}
+.homeLink a{
+    color: #0076ff;
+    text-decoration: none;
+    cursor: pointer;    
+    font-weight: 700;
+    font-size: 15px;
+}
+.packageMain{
+    height: 80vh;
+    text-align: center;
+}
+.packageMain > h2{
+    font-size: 2rem;
+    color: #1e419c;
+    font-weight: 500;
+}
+.packageMain > h2 span {
+    color: #0076ff;
+}
+.packageMain > p {
+    width: 430px;
+    margin: 20px auto 35px;
+    font-size: 15px;
+    font-weight: 400;
+}
+.cardWrapper{
+    max-width: 1200px;
+    min-height: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* media style */
+@media (max-width: 1024px) {
+    .cardWrapper {
+        max-width: 1000px;
+    }
+}
+
+@media (max-width:768px) {
+    .cardWrapper {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+}

@@ -1,0 +1,51 @@
+import React, { useState, useEffect } from 'react';
+import "./forgotPassword.css"
+import InputComp from '../Input';
+import { Link } from "react-router-dom"
+
+export default function ForgotPassword() {
+  const [email, setEmail] = useState("")
+  const [require, setRequire] = useState(false)
+  const [sentEmail, setSentEmail] = useState(false)
+
+  const handleChange = (e) => {
+    setEmail(e.target.value)
+    setRequire(false)
+    console.log("handleChange");
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      setRequire(true)
+    }
+    if (email && !require) {
+      setSentEmail(true)
+    }
+    console.log("Forgot Password data is ", email);
+    setEmail("")
+  }
+
+  useEffect(() => {
+    console.log("render");
+  }, [require])
+
+  return (
+    <div className="forgotPasswordWrapper">
+      <h6>Forgot password</h6>
+
+      <form onSubmit={handleSubmit}>
+        <label>Email*</label>
+        <InputComp require={require} value={email} type="email" name="email" placeholder="Email" message="Please input Email!" onChange={handleChange} />
+
+        {/* ForgotPassword button and login link*/}
+        <div className="forgotPasswordLinks">
+          <input className="forgetPassSubmit" type="submit" value="Send" />
+          <Link className="loginLink" to="/login">Login</Link>
+        </div>
+      </form>
+      {sentEmail && <h5>Please check your email!</h5>}
+    </div>
+  );
+}

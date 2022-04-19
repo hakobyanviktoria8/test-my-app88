@@ -1,0 +1,74 @@
+.LoginWrapper{
+    width: 500px;
+    margin: 18vh auto;
+}
+.LoginWrapper h6{
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #474657;
+    font-weight: 600;
+}
+.forgotPass{
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: 15px;
+}
+.forgotPass > a{
+    text-decoration: none;
+    color: #1890ff;
+}
+.loginLinks{
+    width: 100%;
+    display: flex;
+}
+.registerLink{
+    width:30%;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-right: 5%;
+    color: rgba(0,0,0,.85);
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+}
+.registerLink:hover{
+    color: #40a9ff;
+    border-color: #40a9ff;
+}
+.LoginSubmit{
+    background: #1890ff;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: 700;    
+    font-size: 14px;
+    height: 40px;
+    padding: 6.4px 15px;
+    width: 65%;
+}
+
+/* media style */
+@media (max-width: 1024px) {
+    .LoginWrapper{
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .LoginWrapper {
+        width: 60%;
+    }
+}
+
+@media (max-width: 425px) {
+    .LoginWrapper{
+        width: 80%;
+    }
+}
