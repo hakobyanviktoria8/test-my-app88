@@ -20,15 +20,8 @@ function App() {
           <Route path="/package" element={<Package />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot_password" element={<ForgotPassword />} />
-            {
-                user ?
-                <>
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="lists" element={<Lists />} />
-                </>
-                :
-                <Route path="/" element={<Login />} />
-            }
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/lists" element={<Lists />} />
         </Routes>
       </UserContext.Provider>
   );
