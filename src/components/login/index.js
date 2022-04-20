@@ -1,18 +1,21 @@
-import { configure } from '@testing-library/react';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import {UserContext} from "../../App";
 import { Link } from 'react-router-dom';
 import InputComp from '../Input';
 import "./login.css"
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [require, setRequire] = useState(false)
+  const {user, setUser} = useContext(UserContext);
 
   const handleChangeEmail = (e) => {
-    let emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;    
+    let emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
     if(emailformat.test(e.target.value)){
-      console.log("object test")
+      console.log("valid email")
+      setUser(e.target.value)
     }
     setEmail(e.target.value)
     setRequire(false)
@@ -27,8 +30,13 @@ export default function Login() {
     console.log("Login data here ", email, password);
     setEmail("")
     setPassword("")
-  }
+    console.log("User ",user)
 
+    // authData && window.location.replace("/dashboard")
+  }
+  if (user) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className="LoginWrapper">
       <h6>Login</h6>
@@ -49,5 +57,5 @@ export default function Login() {
         </div>
       </form>
     </div>
-  );
+  )
 }

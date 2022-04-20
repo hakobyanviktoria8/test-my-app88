@@ -4,7 +4,7 @@ import {
     Route,
 } from "react-router-dom";
 import Dashboard from "./components/dashboard";
-import Lists from "./components/lists";
+import Lists from "./components/lists/lists";
 function Main() {
     return (
         <></>
