@@ -1,5 +1,5 @@
-import React,{useState, createContext } from "react";
-import { Routes, Route} from "react-router-dom";
+import React,{useState, useEffect, createContext } from "react";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Dashboard from './components/dashboard';
 import Lists from './components/lists/lists';
 import Login from './components/login';
@@ -10,7 +10,15 @@ import ForgotPassword from './components/forgot_password';
 export const UserContext = createContext(null)
 
 function App() {
-  const [user, setUser] = useState("");
+    let navigate = useNavigate();
+    const [user, setUser] = useState("");
+
+    //if user not defined redirect login page
+    useEffect(() => {
+        if (!user) {
+            navigate('/');
+        }
+    });
 
   return (
       <UserContext.Provider value={{user,setUser}}>
