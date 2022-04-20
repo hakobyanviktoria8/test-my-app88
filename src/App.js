@@ -16,6 +16,7 @@ function App() {
         <Route path="/package" element={<Package />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot_password" element={<ForgotPassword />} />
+
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="lists" element={<Lists />} />
       </Routes>
