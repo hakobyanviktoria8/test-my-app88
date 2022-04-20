@@ -5,6 +5,7 @@ import "./register.css"
 
 export default function Register() {
   const [formData, setFormData] = useState({})
+  const [errorMessage, setErrorMessage] = useState({})
   const [require, setRequire] = useState(false)
   const countryPhoneCode={
     "Select":"Select",
@@ -23,17 +24,26 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if(!e.target.value){
+      setErrorMessage({
+        ...errorMessage,
+        [e.target.name]: "Fild is required"
+      })
+      console.log(e.target.name.name)
+    }
+
     setRequire(true)
     console.log("Register form data here ",formData);
   };
-  
+    console.log("setErrorMessage ",errorMessage);
+
   return (
     <div className="registerWrapper">
       <h6>Register</h6>
 
       <form onSubmit={handleSubmit}>
         <label>Company name *</label>
-        <InputComp require={require} type="name" name="name" placeholder="Company name" message="Please input Company name!" onChange={handleChange} />
+        <InputComp require={require} type="text" name="name" placeholder="Company name" message={errorMessage.name} onChange={handleChange} />
 
         <label>Country *</label>
         <div className='selectCountryWrapper'>
@@ -51,17 +61,17 @@ export default function Register() {
           <select className="selectCode" name="selectCode" onChange={handleChange} unselectable="on" readOnly={true} disabled>
             <option name="SelectOption">{!formData.selectCountry ? "Select": countryPhoneCode[formData.selectCountry]}</option>
           </select>
-          <InputComp require={require} type="tel" name="tel" placeholder="Tel" message="Please input your phone number!" onChange={handleChange} />
+          <InputComp require={require} type="tel" name="tel" placeholder="Tel" message={errorMessage.tel} onChange={handleChange} />
         </div>
         
         <label>Email (Login) *</label>
-        <InputComp require={require} type="text" name="email" placeholder="Email (Login)" message="Please input email!" onChange={handleChange} />
+        <InputComp require={require} type="text" name="email" placeholder="Email (Login)" message={errorMessage.email} onChange={handleChange} />
 
         <label>Password *</label>        
-        <InputComp require={require} type="password" name="password" placeholder="Password" message="Please input password!" onChange={handleChange} />
+        <InputComp require={require} type="password" name="password" placeholder="Password" message={errorMessage.password} onChange={handleChange} />
 
         <label>Confirm Password *</label>        
-        <InputComp require={require} type="password" name="password" placeholder="Password" message="Please confirm your password!" onChange={handleChange} />
+        <InputComp require={require} type="password" name="confirmPassword" placeholder="Password" message={errorMessage.confirmPassword} onChange={handleChange} />
 
         <div className='agreeCheckboxWrapper'>
           <div className='agreeCheckbox'>

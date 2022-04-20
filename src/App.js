@@ -1,5 +1,5 @@
 import React,{useState, useEffect, createContext } from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Dashboard from './components/dashboard';
 import Lists from './components/lists/lists';
 import Login from './components/login';
@@ -18,7 +18,7 @@ function App() {
         if (!user) {
             navigate('/');
         }
-    });
+    },[]);
 
   return (
       <UserContext.Provider value={{user,setUser}}>
