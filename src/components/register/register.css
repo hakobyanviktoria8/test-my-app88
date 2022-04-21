@@ -3,13 +3,16 @@
     margin: 18vh auto 0;
 }
 .invalid{
-    border: 1px solid red;
+    border: 1px solid red !important;
 }
 .valid{
-    border: 1px solid greenyellow;
+    border: 1px solid greenyellow  !important;
 }
 .default{
     border: 1px solid #f0f0f0;
+}
+.default:hover{
+    border-color: #40a9ff;
 }
 .registerWrapper h6 {
     margin-bottom: 15px;
@@ -35,7 +38,7 @@
     border-color: #40a9ff;
 }
 .selectCountryWrapper > select {
-    border: 1px solid #f0f0f0;
+    border: none;
     height: 40px;
     border-radius: 10px;
     background-color: #f0f0f0 !important;

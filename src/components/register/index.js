@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
-import { Link } from 'react-router-dom';
+import React,{useState, useEffect} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import InputComp from '../Input';
 import "./register.css"
 
 export default function Register() {
+  let navigate = useNavigate();
   const emailValidation = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
   const passwordValidation = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i
   const countryPhoneCode={
@@ -22,16 +23,22 @@ export default function Register() {
     confirmPassword:"",
     agreeCheckbox:""
   })
-  const [className, setClassName]  = useState({})
+  const [classNames, setClassNames]  = useState({})
   const [errors,setErrors]= useState({})
  
+  useEffect(() => {
+    return () => {
+      console.log("change classNames or formData")
+    };
+  }, [classNames,formData])
+
   const handleChange = (e) => {
     if(e.target.value.length < 3 ){
-      setErrors({
-        ...errors,
-        [e.target.name] : "Min length is 3"
-      })
-    }  else if(e.target.name === "email" && !emailValidation.test(e.target.value)){
+        setErrors({
+          ...errors,
+          [e.target.name] : "Min length is 3"
+        })
+    } else if(e.target.name === "email" && !emailValidation.test(e.target.value)){
         setErrors({
           ...errors,
           [e.target.name] : "Please enter valid email"
@@ -41,30 +48,58 @@ export default function Register() {
           ...errors,
           [e.target.name] :  "Min 8 characters, 1 letter, 1 number and 1 special character"
         })
+    } else if(e.target.name === "confirmPassword" && e.target.value === formData?.password){
+        setErrors({
+          ...errors,
+          [e.target.name] :  "Didn't match password!"
+        })
     } else {
         setErrors("")
     }
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value.trim()
-    });
-    setClassName(elemClass => {
+    })
+
+    setClassNames(elemClass => {
       return {
          ...elemClass,
          [e.target.name]: 'default',
       }
    })
+   
    Object.keys(formData).forEach(x=>{
     if(formData[x] && !errors[x]){
-      setClassName(elemClass => {
+      setClassNames(elemClass => {
         return {
            ...elemClass,
            [x]: 'valid',
         }
      })
+    } else if(errors[x]){
+      setClassNames(elemClass => {
+        return {
+           ...elemClass,
+           [x]: 'invalid',
+        }
+     })
     }
   })
 };
+
+const handleKeyDown=(e)=>{
+  console.log("handleKeyDown")
+   Object.keys(formData).forEach(x=>{
+    if(errors[x]){
+          setClassNames({
+              ...classNames,
+              [x]: 'invalid',
+            }
+        )
+    }
+  })
+}
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -72,7 +107,7 @@ export default function Register() {
 
     Object.keys(formData).forEach(x=>{
       if(formData[x]===""){
-        setClassName(elemClass => {
+        setClassNames(elemClass => {
           return {
              ...elemClass,
              [x]: 'invalid',
@@ -85,9 +120,12 @@ export default function Register() {
          }
        })
       }
+      if(formData[x]!=="" && !errors[x]){
+         navigate("/")
+      }
     })
   };
-    console.log("className ",className);
+    console.log("classNames ",classNames);
 
   return (
     <div className="registerWrapper">
@@ -95,11 +133,11 @@ export default function Register() {
 
       <form onSubmit={handleSubmit}>
         <label>Company name *</label>
-        <InputComp className={ className?.name } type="text" name="name" placeholder="Company name" onChange={handleChange} error={errors?.name}/>
+        <InputComp className={ classNames?.name } type="text" name="name" placeholder="Company name" onChange={handleChange} error={errors?.name} handleKeyDown={handleKeyDown}/>
 
         <label>Country *</label>
         <div className='selectCountryWrapper'>
-          <select name="selectCountry" onChange={handleChange} style={{ border: require && "1px solid red" }}>
+          <select name="selectCountry" onChange={handleChange} className={ classNames?.selectCountry }>
             <option name="Select">Select Country</option>
             <option name="Afghanistan">Afghanistan</option>
             <option name="Albania">Albania</option>
@@ -113,17 +151,17 @@ export default function Register() {
           <select className="selectCode" name="selectCode" onChange={handleChange} unselectable="on" readOnly={true} disabled>
             <option name="SelectOption">{!formData.selectCountry ? "Select": countryPhoneCode[formData.selectCountry]}</option>
           </select>
-          <InputComp className={ className?.tel } type="tel" name="tel" placeholder="Tel" onChange={handleChange} error={errors?.tel}/>
+          <InputComp className={ classNames?.tel } type="tel" name="tel" placeholder="Tel" onChange={handleChange} error={errors?.tel}/>
         </div>
         
         <label>Email (Login) *</label>
-        <InputComp className={ className?.email } type="text" name="email" placeholder="Email (Login)" onChange={handleChange} error={errors?.email}/>
+        <InputComp className={ classNames?.email } type="text" name="email" placeholder="Email (Login)" onChange={handleChange} error={errors?.email}/>
 
         <label>Password *</label> 
-        <InputComp className={ className?.password } type="password" name="password" placeholder="Password" onChange={handleChange} error={errors?.password}/>
+        <InputComp className={ classNames?.password } type="password" name="password" placeholder="Password" onChange={handleChange} error={errors?.password}/>
        
         <label>Confirm Password *</label>   
-        <InputComp className={ className?.confirmPassword } type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} error={errors?.confirmPassword}/>
+        <InputComp className={ classNames?.confirmPassword } type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} error={errors?.confirmPassword}/>
      
         <div className='agreeCheckboxWrapper'>
           <div className='agreeCheckbox'>
@@ -134,7 +172,7 @@ export default function Register() {
               <a rel="noopener noreferrer" href="https://ubicross.com/en/store/privacy" target="_blank"> Privacy Policy</a>
             </span>
           </div>
-          <span>{errors?.agreeCheckbox}</span>
+          {/* <span>{errors?.agreeCheckbox}</span> */}
         </div>
 
         {/* registration link and login button */}

@@ -11,9 +11,6 @@
     margin-bottom: 5px;
     border: 1px solid #f0f0f0;
 }
-.input:hover{
-    border-color: #40a9ff;
-}
 .input > input{
     width: 90%;
     height: 30px;
