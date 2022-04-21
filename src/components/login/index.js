@@ -5,44 +5,113 @@ import InputComp from '../Input';
 import "./login.css"
 
 export default function Login() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [require, setRequire] = useState(false)
-  let {user,setUser} = useContext(UserContext);
-  let navigate = useNavigate();
+  const [formData, setFormData] = useState({email: '', password: ''})
+  const [classNames, setClassNames]  = useState({email: '', password: ''})
+  const [errors, setErrors]  = useState({email: '', password: ''})
+  const navigate = useNavigate();
 
-  const handleChangeEmail = (e) => {
-    let emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
-    if(emailformat.test(e.target.value)){
-      setUser(e.target.value);
-      console.log("valid email")
+  const validate =(name,e)=>{
+    const emailValidation = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
+    const passwordValidation = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i
+
+    if(name === "email" && !emailValidation.test(e.target.value)){
+      // console.log("validate",name,e);
+      setClassNames(clas => {
+         return {
+            ...clas,
+            [name]: 'invalid',
+         }
+      })
+      setErrors(err => {
+         return {
+            ...err,
+            [name]: `Enter valid email`,
+         }
+      })
     }
-    setEmail(e.target.value)
-    setRequire(false)
+    if(name === "password" && !passwordValidation.test(e.target.value)){
+      console.log("validate",name,e);
+      setClassNames(clas => {
+         return {
+            ...clas,
+            [name]: 'invalid',
+         }
+      })
+      setErrors(err => {
+         return {
+            ...err,
+            [name]: `Enter valid password`,
+         }
+      })
+    }
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+      setFormData({
+         ...formData,
+         [name]: value,
+      })
+      setErrors(err => {
+         return {
+            ...err,
+            [name]: validate(name,e),
+         }
+      })
+      if(!errors[name] && value){
+        setClassNames(clas => {
+         return {
+            ...clas,
+            [name]: 'valid',
+         }
+      })
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password) {
-      setRequire(true)
-    }
-    if(email && password && user) {
-      setEmail("")
-      setPassword("")
-      console.log("User ",user)
-      navigate("/dashboard")
-    }
-    console.log("Login data here ", email, password);
-  }
+    let ok =""
+    Object.keys(formData).forEach(key => {
+      if(formData[key] && !errors[key]){
+        setClassNames(elemClass => {
+          return {
+              ...elemClass,
+              [key]: 'valid',
+          }
+        })
+        Object.keys(classNames).forEach(key => {
+          if(classNames[key]==="valid"){
+            ok = true
+          }
+        }) 
+        // didn't work
+        ok && navigate("/dashboard")       
+      }
+      if(!formData[key]){
+        setClassNames(elemClass => {
+          return {
+              ...elemClass,
+              [key]: 'invalid',
+          }
+        })
+        setErrors(err => {
+          return {
+              ...err,
+              [key]: 'Required fild',
+          }
+        })
+      }
+    })
+  } 
 
   return (
     <div className="LoginWrapper">
       <h6>Login</h6>
 
       <form onSubmit={handleSubmit}>
-        <InputComp require={require} value={email} type="text" name="email" placeholder="Username or Email" message="Please input Username or Email!" onChange={handleChangeEmail} />
-        <InputComp require={require} value={password} type="password" name="password" placeholder="Password" message="Please input password!" onChange={(e) => setPassword(e.target.value)} />
-
+        <InputComp className={ classNames?.email } type="text" name="email" placeholder="Email (Login)" onChange={handleChange} error={errors?.email}/>
+        <InputComp className={ classNames?.password } type="password" name="password" placeholder="Password" onChange={handleChange} error={errors?.password}/>
+      
         {/*forgot password link, go to /forgot_password page*/}
         <div className="forgotPass">
           <Link to="/forgot_password">Forgot password?</Link>
