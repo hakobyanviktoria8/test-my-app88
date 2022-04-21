@@ -19,6 +19,7 @@ export default function Layout({children}) {
             <main>
                 <h2>Welcome {userData?.user}</h2>
 
+                {/*main content render here*/}
                 {children}
             </main>
             <footer>
