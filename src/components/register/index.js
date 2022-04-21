@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import React,{useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import InputComp from '../Input';
@@ -13,10 +14,11 @@ export default function Register() {
     "Albania": "+355",
     "Armenia": "+374",
   }
+  const[pass,setPass]= useState("")
   const [formData, setFormData] = useState({
     name: "",
     selectCountry:"",
-    selectCode: "",
+    // selectCode: "",
     tel:"",
     email:"",
     password:"",
@@ -26,106 +28,99 @@ export default function Register() {
   const [classNames, setClassNames]  = useState({})
   const [errors,setErrors]= useState({})
  
-  useEffect(() => {
-    return () => {
-      console.log("change classNames or formData")
-    };
-  }, [classNames,formData])
-
-  const handleChange = (e) => {
-    if(e.target.value.length < 3 ){
-        setErrors({
-          ...errors,
-          [e.target.name] : "Min length is 3"
-        })
-    } else if(e.target.name === "email" && !emailValidation.test(e.target.value)){
-        setErrors({
-          ...errors,
-          [e.target.name] : "Please enter valid email"
-        })
-    } else if(e.target.name === "password" && !passwordValidation.test(e.target.value)){
-        setErrors({
-          ...errors,
-          [e.target.name] :  "Min 8 characters, 1 letter, 1 number and 1 special character"
-        })
-    } else if(e.target.name === "confirmPassword" && e.target.value === formData?.password){
-        setErrors({
-          ...errors,
-          [e.target.name] :  "Didn't match password!"
-        })
-    } else {
-        setErrors("")
-    }
-
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value.trim()
+  const handleChange =(e) =>{
+    Object.keys(formData).forEach(x=>{
+      setFormData({
+        ...formData,
+        [x]: e.target.value.trim()
+      })
+      setClassNames(clas => {
+        if(errors[e.target.name]){
+          return {
+            ...clas,
+            [e.target.name]: 'invalid',
+          }
+        } else if(!errors[e.target.name] && formData[x] && e.target.value.length>3){
+          return {
+            ...clas,
+            [e.target.name]: 'valid',
+          }
+        } else{
+          return {
+            ...clas,
+            [e.target.name]: 'default',
+          }
+        }             
+      })
+      setErrors(err => {
+        if(e.target.value.length < 3 ){
+          return {
+            ...err,
+            [e.target.name]: "Min length is 3!",
+          }
+        } else if(e.target.name === "email" && !emailValidation.test(e.target.value)){
+          return {
+            ...err,
+            [e.target.name]: "Please enter valid email!",
+          }
+        } else if(e.target.name === "password" && !passwordValidation.test(e.target.value)){
+          setPass(e.target.value)
+          return {
+            ...err,
+            [e.target.name]: "Min 8 characters, 1 letter, 1 number and 1 special character",
+          }
+        } else if(e.target.name === "confirmPassword" && e.target.value !== pass){
+          return {
+            ...err,
+            [e.target.name]: "Didn't match password!",
+          }
+        } else {
+          return{
+            ...err,
+            [e.target.name] :  ""
+          }
+        }
+      })
     })
-
-    setClassNames(elemClass => {
-      return {
-         ...elemClass,
-         [e.target.name]: 'default',
-      }
-   })
-   
-   Object.keys(formData).forEach(x=>{
-    if(formData[x] && !errors[x]){
-      setClassNames(elemClass => {
-        return {
-           ...elemClass,
-           [x]: 'valid',
-        }
-     })
-    } else if(errors[x]){
-      setClassNames(elemClass => {
-        return {
-           ...elemClass,
-           [x]: 'invalid',
-        }
-     })
-    }
-  })
-};
-
-const handleKeyDown=(e)=>{
-  console.log("handleKeyDown")
-   Object.keys(formData).forEach(x=>{
-    if(errors[x]){
-          setClassNames({
-              ...classNames,
-              [x]: 'invalid',
-            }
-        )
-    }
-  })
-}
+    console.log("formData",formData)
+    console.log("classNames",classNames)
+    console.log("errors",errors)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("Register form data here ",formData);
-
+    
     Object.keys(formData).forEach(x=>{
       if(formData[x]===""){
         setClassNames(elemClass => {
+            return {
+              ...elemClass,
+              [x]: 'invalid',
+            }
+        })
+        setErrors(y=>{
           return {
-             ...elemClass,
-             [x]: 'invalid',
+            ...y,
+            [x]: "Fild is require!"
           }
-       })
-       setErrors(y=>{
-         return {
-           ...y,
-           [x]: "Fild is require!"
-         }
-       })
-      }
-      if(formData[x]!=="" && !errors[x]){
-         navigate("/")
+        })
+      } else if(formData[e.target.name] && !errors[e.target.name] && classNames[e.target.name] === "valid"){
+        setClassNames(elem => {
+            return {
+              ...elem,
+              [x]: 'valid',
+            }
+        })
+        console.log("OK")
+        navigate("/")
       }
     })
+
+    console.log("formData________",formData)
+    console.log("classNames___________",classNames)
+    console.log("errors______________",errors)
   };
-    console.log("classNames ",classNames);
+  
 
   return (
     <div className="registerWrapper">
@@ -133,7 +128,7 @@ const handleKeyDown=(e)=>{
 
       <form onSubmit={handleSubmit}>
         <label>Company name *</label>
-        <InputComp className={ classNames?.name } type="text" name="name" placeholder="Company name" onChange={handleChange} error={errors?.name} handleKeyDown={handleKeyDown}/>
+        <InputComp className={ classNames?.name } type="text" name="name" placeholder="Company name" onChange={handleChange} error={errors?.name}/>
 
         <label>Country *</label>
         <div className='selectCountryWrapper'>
@@ -158,7 +153,7 @@ const handleKeyDown=(e)=>{
         <InputComp className={ classNames?.email } type="text" name="email" placeholder="Email (Login)" onChange={handleChange} error={errors?.email}/>
 
         <label>Password *</label> 
-        <InputComp className={ classNames?.password } type="password" name="password" placeholder="Password" onChange={handleChange} error={errors?.password}/>
+        <InputComp className={ classNames?.password } value={pass} type="password" name="password" placeholder="Password" onChange={handleChange} error={errors?.password}/>
        
         <label>Confirm Password *</label>   
         <InputComp className={ classNames?.confirmPassword } type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} error={errors?.confirmPassword}/>
@@ -172,7 +167,7 @@ const handleKeyDown=(e)=>{
               <a rel="noopener noreferrer" href="https://ubicross.com/en/store/privacy" target="_blank"> Privacy Policy</a>
             </span>
           </div>
-          {/* <span>{errors?.agreeCheckbox}</span> */}
+          {/* <span>{"Please read and confirm Terms and Privacy!"}</span> */}
         </div>
 
         {/* registration link and login button */}
