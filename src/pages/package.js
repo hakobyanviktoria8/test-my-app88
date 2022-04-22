@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Card from './card';
-import EnterpriseCard from './card/EnterpriseCard';
-import "./package.css"
+import Card from '../components/card/card';
+import EnterpriseCard from '../components/EnterpriseCard';
+import "./../styles/package.css"
 
 export default function Package() {
   return (

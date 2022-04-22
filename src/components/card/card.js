@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "./card.css"
+import "./../../styles/card.css"
 
 export default function Card({mobDevices="0", members="0", gps="-", analytics="-", map="-"}) {
   return (

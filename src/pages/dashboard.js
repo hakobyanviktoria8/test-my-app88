@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from "../layout/Layout";
-import "./dashboard.css"
-import CardOrder from './Card';
-import buy from "./../../images/buy.png"
-import logout from "./../../images/Logout.png"
-import discovery from "./../../images/Discovery.png"
-import {ChartComp} from './Chart';
+import Layout from "../components/Layout";
+import "./../styles/dashboard.css"
+import CardOrder from '../components/Card';
+import buy from "./../images/buy.png"
+import logout from "./../images/Logout.png"
+import discovery from "./../images/Discovery.png"
+import {ChartComp} from '../components/Chart';
 
 export default function Dashboard() {
     return (

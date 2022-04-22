@@ -1,11 +1,11 @@
 import React,{useState, useEffect, createContext } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Dashboard from './components/dashboard';
-import Lists from './components/lists/lists';
-import Login from './components/login';
-import Package from './components/package';
-import Register from './components/register';
-import ForgotPassword from './components/forgot_password';
+import Lists from './pages/lists';
+import Login from './pages/login';
+import Package from './pages/package';
+import Register from './pages/register';
+import ForgotPassword from './pages/forgot_password';
+import Dashboard from "./pages/dashboard";
 
 export const UserContext = createContext(null)
 

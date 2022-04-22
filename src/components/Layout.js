@@ -1,11 +1,11 @@
 import React, {useContext, useEffect} from 'react';
-import {UserContext} from "../../App";
 import {Link} from "react-router-dom";
-import "./layout.css"
-import logo from "./../../images/logo.png"
-import user from "./../../images/user.png"
-import buy from "./../../images/Buy1.png"
-import wallet from "./../../images/Wallet.png"
+import "./../styles/layout.css"
+import logo from "./../images/logo.png"
+import user from "./../images/user.png"
+import buy from "./../images/Buy1.png"
+import wallet from "./../images/Wallet.png"
+import { UserContext } from '../App';
 
 export default function Layout({children}) {
     const userData = useContext(UserContext);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import "./forgotPassword.css"
-import InputComp from '../Input';
+import "./../styles/forgotPassword.css"
+import InputComp from './../components/Input';
 import { Link } from "react-router-dom"
 
 export default function ForgotPassword() {

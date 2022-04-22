@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from "../layout/Layout";
+import Layout from '../components/Layout';
 
 export default function Lists() {
     console.log("Lists")
   return (
     <Layout>
-          lists
+        <h2>lists page</h2>
     </Layout>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./input.css"
+import "./../styles/input.css"
 
 export default function InputComp({className="default", type, name, placeholder, onChange, error}) {
     return (

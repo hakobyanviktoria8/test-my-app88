@@ -1,8 +1,8 @@
 import { type } from '@testing-library/user-event/dist/type';
 import React,{useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import InputComp from '../Input';
-import "./register.css"
+import InputComp from '../components/Input';
+import "./../styles/register.css"
 
 export default function Register() {
   let navigate = useNavigate();

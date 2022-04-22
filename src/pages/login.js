@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import {UserContext} from "../../App";
+import {UserContext} from "../App";
 import { Link, useNavigate } from 'react-router-dom';
-import InputComp from '../Input';
-import "./login.css"
+import InputComp from '../components/Input';
+import "./../styles/login.css"
 
 export default function Login() {
   const [formData, setFormData] = useState({email: '', password: ''})
