@@ -30,7 +30,7 @@ export default function Login() {
       })
     }
     if(name === "password" && !passwordValidation.test(e.target.value)){
-      console.log("validate",name,e);
+      // console.log("validate",name,e);
       setClassNames(clas => {
          return {
             ...clas,
@@ -70,22 +70,16 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let ok =""
+
     Object.keys(formData).forEach(key => {
+      // console.log(formData[key],errors[key],classNames[key])    
       if(formData[key] && !errors[key]){
         setClassNames(elemClass => {
           return {
               ...elemClass,
               [key]: 'valid',
           }
-        })
-        Object.keys(classNames).forEach(key => {
-          if(classNames[key]==="valid"){
-            ok = true
-          }
-        }) 
-        // didn't work
-        ok && navigate("/dashboard")       
+        })       
       }
       if(!formData[key]){
         setClassNames(elemClass => {
@@ -102,6 +96,18 @@ export default function Login() {
         })
       }
     })
+
+    // navigate to dashboard page
+    let bool = false
+    Object.keys(classNames).forEach(key => {
+      if(formData[key] && !errors[key] && classNames[key]==="valid"){
+        bool = true
+      } else {
+        bool = false
+      }
+    })
+    bool && navigate("/dashboard")
+
   } 
 
   return (

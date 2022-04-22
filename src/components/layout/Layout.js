@@ -7,7 +7,7 @@ export default function Layout({children}) {
     const userData = useContext(UserContext);
 
     useEffect(() => {
-        console.log("Layout render ", userData)
+        // console.log("Layout render ", userData)
     },[]);
 
     return (

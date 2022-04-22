@@ -6,7 +6,10 @@ export default function InputComp({className="default", type, name, placeholder,
         <div className="inputComp">
             <div className={`input ${className}`}>
                 <input type={type} name={name} placeholder={placeholder} autoComplete="off" onChange={onChange}/>
-                <div>{className==="invalid" && <span>x</span>}</div>
+                <div>
+                    {className==="invalid" && <span>x</span>}
+                    {className==="valid" && <span className='val'>v</span>}
+                </div>
             </div>
             <span>{error}</span>
         </div>
