@@ -5,6 +5,7 @@ import CardOrder from './Card';
 import buy from "./../../images/buy.png"
 import logout from "./../../images/Logout.png"
 import discovery from "./../../images/Discovery.png"
+import {ChartComp} from './Chart';
 
 export default function Dashboard() {
     return (
@@ -18,7 +19,7 @@ export default function Dashboard() {
                 <CardOrder img={discovery} title="Total" amount="$129.3k" quantity="67" up="+$42k (42%)" down="-4 (6%)"/>                
               </div>
               <div className='graphikWrapper'>
-
+                <ChartComp/>
               </div>
           </div>
       </Layout>

@@ -60,8 +60,11 @@
 }
 .graphikWrapper{
     width: 100%;
-    height: 400px;
+    height: 500px;
     background: #FFFFFF;
     border-radius: 30px;
     padding: 30px;
+}
+.graphikWrapper canvas{
+    height: 100% !important;
 }
