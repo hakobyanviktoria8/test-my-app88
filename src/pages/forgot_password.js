@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import "./../styles/input.css"
 import "./../styles/forgotPassword.css"
-import InputComp from './../components/Input';
 import { Link } from "react-router-dom"
 
 export default function ForgotPassword() {
@@ -11,16 +11,16 @@ export default function ForgotPassword() {
   const [sentEmail, setSentEmail] = useState(false)
 
   const handleChange = (e) => {
-    // setEmail(e.target.value)
+    setEmail(e.target.value)
     console.log("handleChange");
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (!email) {
-    //   setRequire(true)
-    // }
+    if (!email) {
+      // setRequire(true)
+    }
     // if (email && !require) {
     //   setSentEmail(true)
     // }
@@ -38,7 +38,14 @@ export default function ForgotPassword() {
 
       <form onSubmit={handleSubmit}>
         <label>Email*</label>
-        <InputComp className={ clas } type="text" name="email" placeholder="Email (Login)" onChange={handleChange} error={error}/>
+        <div className={`input ${clas}`}>
+          <input type="text" name="email" placeholder="Email (Login)" autoComplete="off" onChange={handleChange}/>
+          <div>
+              {clas==="invalid" && <span>x</span>}
+              {clas==="valid" && <span className='val'>v</span>}
+          </div>
+        </div>
+        <span>{error}</span>
 
         {/* ForgotPassword button and login link*/}
         <div className="forgotPasswordLinks">
