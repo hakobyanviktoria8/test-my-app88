@@ -1,0 +1,67 @@
+.dashboardWrapper{
+    border: 1px solid;
+}
+.dashboardWrapper h2{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 80px;
+    color: #000000;
+}
+.ordersWrapper{
+    height: 250px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.ordersWrapper > .cardOrder {
+    width: 32%;
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding: 30px;
+}
+.cardOrder > div{
+    display: flex;
+}
+.cardOrder img{
+    width: 30px;
+    margin-right: 15px;
+}
+.cardOrder h3 {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 30px;
+    color: #767676;
+}
+.cardOrder .content{
+    margin-top: 30px;
+}
+.cardOrder .content > div{
+    min-width: 50%;
+}
+.cardOrder .content p{
+    color: #767676;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.cardOrder .content h4{
+    font-weight: 700;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+.cardOrder .content span{    
+    font-weight: 600;
+    font-size: 16px;
+}
+.green{
+    color: #01BF64;
+}
+.red{
+    color: #E24747;
+}
+.graphikWrapper{
+    width: 100%;
+    height: 400px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding: 30px;
+}

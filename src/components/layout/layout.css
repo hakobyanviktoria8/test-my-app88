@@ -40,12 +40,17 @@ nav > a{
 }
 
 /*main content*/
+.mainContentWrapper{
+    display: flex;
+    padding: 20px;
+    min-height: calc(100vh - 120px);
+    width: 90%;
+    margin-left: 10%;
+    background: #E5E5E5;
+}
 main{
     min-height: calc(100vh - 120px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    width: 100%;
 }
 
 /*footer*/
