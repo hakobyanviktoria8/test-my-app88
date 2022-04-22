@@ -5,31 +5,32 @@ import { Link } from "react-router-dom"
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("")
-  const [require, setRequire] = useState(false)
+  const [clas, setClas]  = useState("default")
+  const [error, setError]  = useState("")
+
   const [sentEmail, setSentEmail] = useState(false)
 
   const handleChange = (e) => {
-    setEmail(e.target.value)
-    setRequire(false)
+    // setEmail(e.target.value)
     console.log("handleChange");
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!email) {
-      setRequire(true)
-    }
-    if (email && !require) {
-      setSentEmail(true)
-    }
-    console.log("Forgot Password data is ", email);
-    setEmail("")
+    // if (!email) {
+    //   setRequire(true)
+    // }
+    // if (email && !require) {
+    //   setSentEmail(true)
+    // }
+    // console.log("Forgot Password data is ", email);
+    // setEmail("")
   }
 
-  useEffect(() => {
-    console.log("render");
-  }, [require])
+  // useEffect(() => {
+  //   console.log("render");
+  // }, [require])
 
   return (
     <div className="forgotPasswordWrapper">
@@ -37,7 +38,7 @@ export default function ForgotPassword() {
 
       <form onSubmit={handleSubmit}>
         <label>Email*</label>
-        <InputComp require={require} value={email} type="email" name="email" placeholder="Email" message="Please input Email!" onChange={handleChange} />
+        <InputComp className={ clas } type="text" name="email" placeholder="Email (Login)" onChange={handleChange} error={error}/>
 
         {/* ForgotPassword button and login link*/}
         <div className="forgotPasswordLinks">

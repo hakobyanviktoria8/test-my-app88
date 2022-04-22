@@ -6,9 +6,9 @@ import "./layout.css"
 export default function Layout({children}) {
     const userData = useContext(UserContext);
 
-    useEffect(() => {
+    // useEffect(() => {
         // console.log("Layout render ", userData)
-    },[]);
+    // },[]);
 
     return (
         <>
