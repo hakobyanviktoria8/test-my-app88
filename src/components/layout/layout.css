@@ -13,6 +13,32 @@ nav > a{
     color: black;
 }
 
+/* leftMenu */
+.leftMenu{
+    width: 10%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-right: 1px solid #dcd8d8;;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+}
+.leftMenu>a:hover{
+    background: #F3F4F8;
+    border-radius: 31.7077px;
+}
+.leftMenu > a > img{
+    width: 80%;
+    /* height: 48px; */
+}
+.leftMenu > .logo {
+    width: 75%;
+}
+
 /*main content*/
 main{
     min-height: calc(100vh - 120px);

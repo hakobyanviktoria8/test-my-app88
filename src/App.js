@@ -14,11 +14,11 @@ function App() {
     const [user, setUser] = useState("");
 
     //if user not defined redirect login page
-    useEffect(() => {
-        if (!user) {
-            navigate('/');
-        }
-    },[]);
+    // useEffect(() => {
+    //     if (!user) {
+    //         navigate('/');
+    //     }
+    // },[]);
 
   return (
       <UserContext.Provider value={{user,setUser}}>
