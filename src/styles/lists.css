@@ -1,0 +1,47 @@
+#circleWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #252222;
+    width: 100%;
+    height: 100vh;
+}
+#circleBorder {
+    width: 200px;
+    height: 200px;
+    border: 10px solid red;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+#squar{
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform: rotate(-20deg);
+}
+.circle{
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border: 10px solid red;
+    border-radius: 50%;
+}
+#circle1{   
+    top: -68px;
+    left: 0;
+}
+#circle2{
+    top: 0;
+    left: -68px;
+}
+#circle3{
+    top: 68px;
+    left: 0;
+}
+#circle4{
+    top: 0;
+    left: 68px;
+}
